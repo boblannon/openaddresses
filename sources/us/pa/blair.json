@@ -15,7 +15,22 @@
     "conform": {
         "type": "csv",
         "number": "SAN",
-        "street": ["PRD","STP","STN","STS","POD"],
+        "street": {
+            "function": "chain",
+            "variable": "street_wip",
+            "functions": [
+                {
+                    "function": "remove_postfix",
+                    "field": "STN",
+                    "field_to_remove": "STS"
+                },
+                {
+                    "function": "join",
+                    "fields": ["PRD","STP","street_wip","POD"],
+                    "seperator": " "
+                }
+            ]
+        },
         "city": "MCN",
         "lon": "X",
         "lat": "Y",
